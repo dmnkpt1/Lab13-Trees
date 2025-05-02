@@ -20,6 +20,13 @@ class Solution(object):
         else:
             if root.left is None:
                 return root.right
-            else:
+            elif root.right is None:
                 return root.left
+            else:
+                min_node = root.right
+                while min_node.left:
+                    min_node = min_node.left
+                root.val = min_node.val
+                root.right = self.deleteNode(root.right, min_node.val)
+
         return root
